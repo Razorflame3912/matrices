@@ -16,7 +16,7 @@ void print_matrix(struct matrix *m) {
   for(j=0;j<4;j++){
     int i;
     for(i=0; i < m->lastcol; i++){
-      printf("%f\t",m->m[i][j]);
+      printf("%f\t",m->m[j][i]);
     }
     printf("\n");
   }
@@ -118,7 +118,6 @@ Reallocates the memory for m->m such that it now has
 newcols number of collumns
 ====================*/
 void grow_matrix(struct matrix *m, int newcols) {
-  printf("GROW!\n");
   int i;
   for (i=0;i<m->rows;i++) {
       m->m[i] = realloc(m->m[i],newcols*sizeof(double));

@@ -20,10 +20,10 @@ void add_point( struct matrix * points, double x, double y, double z) {
     grow_matrix(points, (points->lastcol + 50));
   }
 
-  points->m[points->lastcol][0]=x;
-  points->m[points->lastcol][1]=y;
-  points->m[points->lastcol][2]=z;
-  points->m[points->lastcol][3]=1;
+  points->m[0][points->lastcol]=x;
+  points->m[1][points->lastcol]=y;
+  points->m[2][points->lastcol]=z;
+  points->m[3][points->lastcol]=1;
 
   points->lastcol++;
   
@@ -56,6 +56,15 @@ Go through points 2 at a time and call draw_line to add that line
 to the screen
 ====================*/
 void draw_lines( struct matrix * points, screen s, color c) {
+  int i;
+  for(i=0;i<points->lastcol;i+=2){
+    int x0 = (int)points->m[0][i];
+    int y0 = (int)points->m[1][i];
+    int x1 = (int)points->m[0][i+1];
+    int y1 = (int)points->m[1][i+1];
+    printf("(%d,%d) to (%d,%d)\n",x0,y0,x1,y1);
+    draw_line(x0,y0,x1,y1,s,c);
+  }
 }
 
 
