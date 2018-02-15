@@ -12,11 +12,11 @@ Returns:
 print the matrix
 */
 void print_matrix(struct matrix *m) {
-  int j = 0;
-  for(j;j<4;j++){
-    int i = 0;
-    for(i; i <= m->lastcol; i++){
-      printf("%f\t",m[i][j]);
+  int j;
+  for(j=0;j<4;j++){
+    int i;
+    for(i=0; i < m->lastcol; i++){
+      printf("%f\t",m->m[i][j]);
     }
     printf("\n");
   }
@@ -29,18 +29,19 @@ Returns:
 turns m in to an identity matrix
 */
 void ident(struct matrix *m) {
-  int target = 0;
-  for(target;target<4;target++){
-    int j = 0;
-    for(j;j<4;j++){
+  int target;
+  for(target=0;target<4;target++){
+    int j;
+    for(j=0;j<4;j++){
       if(j==target){
-	m[target][j] = 1;
+	m->m[target][j] = 1;
       }
       else{
-	m[target][j] = 0;
+	m->m[target][j] = 0;
       }
     }
   }
+  m->lastcol = 4;
 }
 
 
@@ -117,7 +118,7 @@ Reallocates the memory for m->m such that it now has
 newcols number of collumns
 ====================*/
 void grow_matrix(struct matrix *m, int newcols) {
-  
+  printf("GROW!\n");
   int i;
   for (i=0;i<m->rows;i++) {
       m->m[i] = realloc(m->m[i],newcols*sizeof(double));
