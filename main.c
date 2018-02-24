@@ -27,9 +27,25 @@ int main() {
   m2 = new_matrix(4,4);
   add_edge(m2,0,0,0,0,1,0);
   add_edge(m2,4,3,0,5,2,0);
-  add_edge(m2,2,7,0,3,9,0);
   printf("\n\nPRINTING EDGE MATRIX M2:\n\n");
   print_matrix(m2);
+
+  m3 = new_matrix(4,4);
+  add_edge(m3,3,5,0,0,1,0);
+  add_edge(m3,1,2,0,6,9,0);
+  add_edge(m3,0,0,0,1,0,0);
+  printf("\n\nPRINTING EDGE MATRIX M3:\n\n");
+  print_matrix(m3);
+
+  printf("\n\nMULTIPLYING M2 BY M3:\n\n");
+  matrix_mult(m2,m3);
+  print_matrix(m3);
+
+  printf("\n\nMULTIPLYING M1 BY M3 (SHOULD NOT AFFECT M3):\n\n");
+  matrix_mult(m1,m3);
+  print_matrix(m3);
+
+  printf("\n\n...and it doesn't! :) \n\n");
   
 
 

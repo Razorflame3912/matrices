@@ -3,6 +3,7 @@
 #include <math.h>
 
 #include "matrix.h"
+#include "draw.h"
 
 
 /*-------------- void print_matrix() --------------
@@ -53,6 +54,26 @@ Returns:
 a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
+  //a is 4x4
+  //b is 4xn
+  struct matrix * new = new_matrix(4,b->cols);
+  int i;
+  for(i=0;i < b-> lastcol; i++){
+    add_point(new,0,0,0);
+    int j;
+    for(j=0; j < 4; j++){
+      int value = 0;
+      int x;
+      for(x=0;x<4;x++){
+	value += (a->m[j][x] * b->m[x][i]);	
+      }
+      new->m[j][i] = value;
+    }
+  }
+  //print_matrix(new);
+  *b = *new;
+  free(new);
+  
 }
 
 
